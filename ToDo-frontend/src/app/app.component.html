@@ -1,0 +1,47 @@
+<div class="container bg-dark mt-md-5">
+  <form>
+    <div class="row m">
+      <div class="col" style="color: white">
+        Title <input type="text" class="form-control" name="title" placeholder="Do something"
+                     [(ngModel)]="taskModel.title">
+      </div>
+      <div class="col" style="color: white">
+        Priority <input type="text" class="form-control" name="priority" placeholder="Important"
+                        [(ngModel)]="taskModel.priority">
+      </div>
+    </div>
+    <div class="col text-center">
+      <button type="button" class="btn btn-primary text-center mt-md-5" (click)="createTask(taskModel)">Create new
+        task
+      </button>
+
+    </div>
+  </form>
+  <div class="col bg-light text-center">
+    <table class="table table-hover table-striped mt-4">
+      <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Is done?</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let task of (tasks | async)">
+        <td class="text-break">{{task.title}}</td>
+        <td>{{task.priority}}</td>
+        <td>{{task.status}}</td>
+        <td>
+          <button [ngClass]="changeCssStatus(task)" (click)="changeStatus(task)">Change Status</button>
+          <button class="btn btn-danger" (click)="deleteTask(task)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col pt-3">
+  </div>
+</div>
+
+
+
